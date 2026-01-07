@@ -1,0 +1,21 @@
+# render.yaml
+
+services:
+  - type: web
+    name: maxmovies-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: MOVIE_API_BASE_URL
+        sync: false
+      - key: MOVIE_API_KEY
+        sync: false
+      - key: RATE_LIMIT_WINDOW_MS
+        value: 900000
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: 100
