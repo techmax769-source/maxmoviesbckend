@@ -103,10 +103,34 @@ const server = app.listen(PORT, () => {
   ║   • GET  /api/v2/search/{query}                         ║
   ║   • GET  /api/v2/info/{id}                              ║
   ║   • GET  /api/v2/sources/{id}                           ║
-  ║   • GET  /api/v2/health                                 ║
-  ║          Regards to Max!!!🔥✌️                                                ║
+  ║   • GET  /api/v2/health   
+  ║
+  ║        REGARDS TO MAX ✅   
+  ║.       SERVER IS ONLINE⚔️
   ╚══════════════════════════════════════════════════════════╝
   `);
 });
 
 // Graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('SIGTERM signal received: closing HTTP server');
+  server.close(() => {
+    console.log('HTTP server closed');
+    process.exit(0);
+  });
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT signal received: closing HTTP server');
+  server.close(() => {
+    console.log('HTTP server closed');
+    process.exit(0);
+  });
+});
+
+// Handle unhandled rejections
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+module.exports = app;
